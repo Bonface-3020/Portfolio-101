@@ -4,14 +4,35 @@
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sb-overlay');
-  if (sidebar) sidebar.classList.toggle('open');
-  if (overlay) overlay.classList.toggle('show');
+  const toggleBtn = document.getElementById('sb-toggle');
+  
+  if (!sidebar || !overlay) return;
+
+  const isOpen = sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+  
+  // Update toggle button icon
+  if (toggleBtn) {
+    const icon = toggleBtn.querySelector('i');
+    if (icon) {
+      icon.className = isOpen ? 'bi bi-x' : 'bi bi-list';
+    }
+  }
 }
+
 function closeSidebar() {
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sb-overlay');
+  const toggleBtn = document.getElementById('sb-toggle');
+  
   if (sidebar) sidebar.classList.remove('open');
   if (overlay) overlay.classList.remove('show');
+  
+  // Reset toggle button icon
+  if (toggleBtn) {
+    const icon = toggleBtn.querySelector('i');
+    if (icon) icon.className = 'bi bi-list';
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -118,4 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof AOS !== 'undefined') {
     AOS.init({ duration: 800, once: true, offset: 60 });
   }
+
+  // Close sidebar on link click (mobile)
+  const navLinks = document.querySelectorAll('.sb-nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 991) {
+        closeSidebar();
+      }
+    });
+  });
 });
