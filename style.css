@@ -211,14 +211,16 @@ a { text-decoration: none; color: inherit; }
 .hero-bg {
   position: absolute; inset: 0;
   background:
-    linear-gradient(135deg, rgba(10,10,10,.92) 0%, rgba(192,0,26,.15) 50%, rgba(10,10,10,.95) 100%),
+    linear-gradient(135deg, rgba(5,5,5,.95) 0%, rgba(192,0,26,.25) 50%, rgba(5,5,5,.98) 100%),
     url('https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1600&q=80') center/cover no-repeat;
   z-index: 1;
+  filter: blur(6px) brightness(0.5);
+  transform: scale(1.05); /* Prevent blur edges from showing */
 }
 .hero-bg::after {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 30%, var(--black) 100%);
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 20%, var(--black) 100%);
 }
 .hero-content {
   position: relative; z-index: 2;
@@ -227,6 +229,7 @@ a { text-decoration: none; color: inherit; }
   align-items: center; justify-content: center;
   text-align: center;
   padding: 2rem;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 
 /* Animated name */
