@@ -219,7 +219,7 @@ async function fetchSingleArticle() {
     titleEl.textContent = article.title;
     
     const date = new Date(article.published_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-    const tag = article.tags[0] || 'Article';
+    const tag = (article.tags && Array.isArray(article.tags) && article.tags.length > 0) ? article.tags[0] : 'Article';
     metaEl.innerHTML = `${tag} &bull; ${date}`;
 
     if (article.cover_image) {
