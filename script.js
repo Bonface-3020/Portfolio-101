@@ -178,7 +178,7 @@ async function fetchDevToArticles() {
               </div>
             </div>
             <div class="card-actions">
-              <button class="btn-card-primary" onclick="window.location.href='article.html?id=${article.id}'">Read Article <i class="bi bi-arrow-right"></i></button>
+              <a href="article.html#id=${article.id}" class="btn-card-primary" style="display:inline-block; text-decoration:none; text-align:center;">Read Article <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -197,8 +197,11 @@ async function fetchSingleArticle() {
   
   if (!titleEl || !bodyEl) return;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get('id');
+  const hash = window.location.hash;
+  let id = null;
+  if (hash.startsWith('#id=')) {
+    id = hash.replace('#id=', '');
+  }
 
   if (!id) {
     titleEl.textContent = "Article Not Found";
