@@ -150,7 +150,13 @@ async function fetchDevToArticles() {
     const articles = await res.json();
     
     if (articles.length === 0) {
-      grid.innerHTML = `<div class="col-12 text-center" style="color:var(--muted)">No articles found for ${DEVTO_USERNAME}.</div>`;
+      grid.innerHTML = `
+        <div class="col-12 text-center" style="padding: 4rem 0;" data-aos="fade-up">
+          <i class="bi bi-journal-x" style="font-size: 4rem; color: var(--gold); opacity: 0.5;"></i>
+          <h3 style="font-family: 'Cinzel', serif; color: var(--white); margin-top: 1.5rem;">No Articles Yet</h3>
+          <p style="color: var(--muted); max-width: 400px; margin: 0 auto;">Check back later! I'm currently brewing up some exciting new content, tutorials, and tech insights to share with you.</p>
+        </div>
+      `;
       return;
     }
 
