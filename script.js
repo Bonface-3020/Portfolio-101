@@ -87,17 +87,150 @@ function filterProjects(btn, cat) {
 /* ══════════════════════════════════════════
    CONTACT FORM
 ══════════════════════════════════════════ */
-function submitForm() {
+async function submitForm() {
   const form = document.getElementById('contact-form');
   const success = document.getElementById('form-success');
-  if (form) form.style.display = 'none';
-  if (success) success.style.display = 'block';
+  
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const email = document.getElementById('emailAddr').value;
+  const subject = document.getElementById('subject').value;
+  const budget = document.getElementById('budgetRange').value;
+  const message = document.getElementById('message').value;
+
+  if (!firstName || !email || !message) {
+    alert("Please fill in your name, email, and message.");
+    return;
+  }
+
+  // Web3Forms API Call
+  // REPLACE 'YOUR_ACCESS_KEY_HERE' WITH YOUR ACTUAL KEY FROM web3forms.com
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: 'e382758d-e67c-4943-8a9b-f3f1ba6b725b', 
+        name: `${firstName} ${lastName}`,
+        email: email,
+        subject: subject || 'New Portfolio Contact',
+        message: `Budget Range: ${budget}\n\n${message}`
+      })
+    });
+    
+    if (response.status === 200) {
+      if (form) form.style.display = 'none';
+      if (success) success.style.display = 'block';
+    } else {
+      alert("Oops! Something went wrong. Please check your Access Key.");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Network error. Please try again.");
+  }
 }
 function resetForm() {
   const form = document.getElementById('contact-form');
   const success = document.getElementById('form-success');
   if (form) form.style.display = 'block';
   if (success) success.style.display = 'none';
+}
+
+/* ══════════════════════════════════════════
+   DEV.TO BLOG INTEGRATION
+══════════════════════════════════════════ */
+const DEVTO_USERNAME = 'alpha3020';
+
+async function fetchDevToArticles() {
+  const grid = document.getElementById('blog-grid');
+  if (!grid) return;
+
+  try {
+    const res = await fetch(`https://dev.to/api/articles?username=${DEVTO_USERNAME}`);
+    const articles = await res.json();
+    
+    if (articles.length === 0) {
+      grid.innerHTML = `<div class="col-12 text-center" style="color:var(--muted)">No articles found for ${DEVTO_USERNAME}.</div>`;
+      return;
+    }
+
+    grid.innerHTML = ''; 
+    
+    articles.forEach((article, index) => {
+      const delay = index * 80;
+      const date = new Date(article.published_at).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+      const cover = article.cover_image || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80';
+      const tag = article.tag_list[0] || 'Article';
+      
+      grid.innerHTML += `
+        <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="${delay}">
+          <div class="project-card">
+            <div class="card-img-wrap" style="height: 160px;">
+              <img src="${cover}" alt="${article.title}"/>
+              <div class="card-img-overlay"></div>
+              <span class="card-category">${tag}</span>
+            </div>
+            <div class="card-body-custom">
+              <h4 class="card-title-custom">${article.title}</h4>
+              <p class="card-desc">${article.description}</p>
+              <div class="card-tags mt-auto pt-3">
+                <span class="tag" style="border: none; color: var(--muted);"><i class="bi bi-calendar3 me-1"></i> ${date}</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn-card-primary" onclick="window.location.href='article.html?id=${article.id}'">Read Article <i class="bi bi-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  } catch (error) {
+    grid.innerHTML = `<div class="col-12 text-center" style="color:var(--red)">Failed to load articles. Please try again later.</div>`;
+  }
+}
+
+async function fetchSingleArticle() {
+  const titleEl = document.getElementById('article-title');
+  const metaEl = document.getElementById('article-meta');
+  const coverEl = document.getElementById('article-cover');
+  const bodyEl = document.getElementById('article-body');
+  
+  if (!titleEl || !bodyEl) return;
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get('id');
+
+  if (!id) {
+    titleEl.textContent = "Article Not Found";
+    metaEl.textContent = "Error";
+    bodyEl.innerHTML = "<p>No article ID provided.</p>";
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://dev.to/api/articles/${id}`);
+    const article = await res.json();
+
+    if (article.error) throw new Error("Not Found");
+
+    titleEl.textContent = article.title;
+    
+    const date = new Date(article.published_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const tag = article.tags[0] || 'Article';
+    metaEl.innerHTML = `${tag} &bull; ${date}`;
+
+    if (article.cover_image) {
+      coverEl.src = article.cover_image;
+      coverEl.style.display = 'block';
+    }
+
+    bodyEl.innerHTML = article.body_html;
+
+  } catch (error) {
+    titleEl.textContent = "Article Not Found";
+    metaEl.textContent = "Error";
+    bodyEl.innerHTML = "<p>Could not load the article. It may have been deleted.</p>";
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -139,6 +272,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof AOS !== 'undefined') {
     AOS.init({ duration: 800, once: true, offset: 60 });
   }
+
+  // Dev.to Integrations
+  fetchDevToArticles();
+  fetchSingleArticle();
 
   // Close sidebar on link click (mobile)
   const navLinks = document.querySelectorAll('.sb-nav a');
