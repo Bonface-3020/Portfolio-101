@@ -5,22 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About — Bonface Thuo</title>
 
+  <!-- Meta Tags -->
+  <meta name="description" content="About Bonface Thuo, a Full-Stack Developer and UI/UX Designer based in Mombasa." />
+  <meta name="keywords" content="Bonface Thuo, Portfolio, Full-Stack Developer, UI/UX Designer, Web Development, About Me" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="About — Bonface Thuo" />
+  <meta property="og:description" content="About Bonface Thuo, a Full-Stack Developer and UI/UX Designer based in Mombasa." />
+  <meta property="og:type" content="website" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About — Bonface Thuo" />
+  <meta name="twitter:description" content="About Bonface Thuo, a Full-Stack Developer and UI/UX Designer based in Mombasa." />
+
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
   <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <!-- AOS Animate on Scroll -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
   
   <link rel="stylesheet" href="style.css">
+
+  <!-- Scripts -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
 
 <div id="sb-overlay" onclick="closeSidebar()"></div>
 
-<button id="sb-toggle" onclick="toggleSidebar()">
+<button id="sb-toggle" onclick="toggleSidebar()" aria-label="Toggle Sidebar">
   <i class="bi bi-list"></i>
 </button>
 
@@ -47,16 +68,16 @@
   </div>
 
   <div class="sb-social">
-    <a href="https://github.com/Bonface-3020" title="GitHub" target="_blank"><i class="bi bi-github"></i></a>
-    <a href="https://www.instagram.com/alpha_bonnie_3020?igsh=MWN3YW5udHBidG1ybQ==" title="Instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-    <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-    <a href="#" title="Twitter/X"><i class="bi bi-twitter-x"></i></a>
-    <a href="#" title="Dribbble"><i class="bi bi-dribbble"></i></a>
+    <a href="https://github.com/Bonface-3020" title="GitHub" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/alpha_bonnie_3020?igsh=MWN3YW5udHBidG1ybQ==" title="Instagram" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+    <a href="#" title="LinkedIn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+    <a href="#" title="Twitter/X" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+    <a href="#" title="Dribbble" aria-label="Dribbble"><i class="bi bi-dribbble"></i></a>
   </div>
 </nav>
 
-<div id="main-content">
-  <div id="page-about" class="page">
+<main id="main-content">
+  <section id="page-about" class="page">
     <div class="section-header" data-aos="fade-up">
       <span class="section-tag">Who I Am</span>
       <h2 class="section-title">About <span>Me</span></h2>
@@ -66,7 +87,7 @@
     <!-- Block 1: Image Left, Text Right -->
     <div class="about-block">
       <div class="about-img-wrap" data-aos="fade-right">
-        <img src="Images\Alpha.jpeg" alt="Bonface Thuo"/>
+        <img src="Images/Alpha.jpeg" alt="Bonface Thuo"/>
         <div class="about-img-border"></div>
       </div>
       <div class="about-text-wrap" data-aos="fade-left">
@@ -160,7 +181,7 @@
           <div class="tl-dot"></div>
           <div class="tl-content">
             <h5>Coding Instructor</h5>
-            <p>Codingal inc. Teaching Students in STEM to devlelop in IT fields.</p>
+            <p>Codingal inc. Teaching Students in STEM to develop in IT fields.</p>
           </div>
         </div>
         <div class="tl-item" data-aos="fade-right">
@@ -181,13 +202,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
+</main>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- AOS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script src="script.js"></script>
 </body>
 </html>

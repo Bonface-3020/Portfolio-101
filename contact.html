@@ -5,22 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact — Bonface Thuo</title>
 
+  <!-- Meta Tags -->
+  <meta name="description" content="Contact Bonface Thuo, a Full-Stack Developer and UI/UX Designer based in Mombasa." />
+  <meta name="keywords" content="Bonface Thuo, Portfolio, Contact, Full-Stack Developer, UI/UX Designer, Hire Developer" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact — Bonface Thuo" />
+  <meta property="og:description" content="Contact Bonface Thuo, a Full-Stack Developer and UI/UX Designer based in Mombasa." />
+  <meta property="og:type" content="website" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact — Bonface Thuo" />
+  <meta name="twitter:description" content="Contact Bonface Thuo, a Full-Stack Developer and UI/UX Designer based in Mombasa." />
+
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
   <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <!-- AOS Animate on Scroll -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
   
   <link rel="stylesheet" href="style.css">
+
+  <!-- Scripts -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
 
 <div id="sb-overlay" onclick="closeSidebar()"></div>
 
-<button id="sb-toggle" onclick="toggleSidebar()">
+<button id="sb-toggle" onclick="toggleSidebar()" aria-label="Toggle Sidebar">
   <i class="bi bi-list"></i>
 </button>
 
@@ -47,16 +68,16 @@
   </div>
 
   <div class="sb-social">
-    <a href="https://github.com/Bonface-3020" title="GitHub" target="_blank"><i class="bi bi-github"></i></a>
-    <a href="https://www.instagram.com/alpha_bonnie_3020?igsh=MWN3YW5udHBidG1ybQ==" title="Instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-    <a href="https://www.linkedin.com/in/bonface-thuo-644722270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" title="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
-    <a href="#" title="Twitter/X"><i class="bi bi-twitter-x"></i></a>
-    <a href="#" title="Dribbble"><i class="bi bi-dribbble"></i></a>
+    <a href="https://github.com/Bonface-3020" title="GitHub" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/alpha_bonnie_3020?igsh=MWN3YW5udHBidG1ybQ==" title="Instagram" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/bonface-thuo-644722270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" title="LinkedIn" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+    <a href="#" title="Twitter/X" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+    <a href="#" title="Dribbble" aria-label="Dribbble"><i class="bi bi-dribbble"></i></a>
   </div>
 </nav>
 
-<div id="main-content">
-  <div id="page-contact" class="page">
+<main id="main-content">
+  <section id="page-contact" class="page">
     <div class="container-fluid px-0">
       <div class="section-header px-4" data-aos="fade-up">
         <span class="section-tag">Get In Touch</span>
@@ -154,28 +175,28 @@
           <div id="contact-form">
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label-custom">First Name</label>
-                <input type="text" class="form-control-custom" placeholder="John"/>
+                <label for="firstName" class="form-label-custom">First Name</label>
+                <input type="text" id="firstName" class="form-control-custom" placeholder="John"/>
               </div>
               <div class="form-group">
-                <label class="form-label-custom">Last Name</label>
-                <input type="text" class="form-control-custom" placeholder="Doe"/>
+                <label for="lastName" class="form-label-custom">Last Name</label>
+                <input type="text" id="lastName" class="form-control-custom" placeholder="Doe"/>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label-custom">Email Address</label>
-              <input type="email" class="form-control-custom" placeholder="john@example.com"/>
+              <label for="emailAddr" class="form-label-custom">Email Address</label>
+              <input type="email" id="emailAddr" class="form-control-custom" placeholder="john@example.com"/>
             </div>
 
             <div class="form-group">
-              <label class="form-label-custom">Subject</label>
-              <input type="text" class="form-control-custom" placeholder="Project Inquiry"/>
+              <label for="subject" class="form-label-custom">Subject</label>
+              <input type="text" id="subject" class="form-control-custom" placeholder="Project Inquiry"/>
             </div>
 
             <div class="form-group">
-              <label class="form-label-custom">Budget Range</label>
-              <select class="form-control-custom">
+              <label for="budgetRange" class="form-label-custom">Budget Range</label>
+              <select id="budgetRange" class="form-control-custom">
                 <option value="" disabled selected style="background:var(--dark)">Select a range...</option>
                 <option style="background:var(--dark)">Under Ksh 50,000</option>
                 <option style="background:var(--dark)">Ksh 50,000 – Ksh 150,000</option>
@@ -186,8 +207,8 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label-custom">Message</label>
-              <textarea class="form-control-custom" rows="5" placeholder="Tell me about your project, goals, and timeline..."></textarea>
+              <label for="message" class="form-label-custom">Message</label>
+              <textarea id="message" class="form-control-custom" rows="5" placeholder="Tell me about your project, goals, and timeline..."></textarea>
             </div>
 
             <button class="btn-submit" onclick="submitForm()">
@@ -197,13 +218,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- AOS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script src="script.js"></script>
+    </div>
+  </section>
+</main>
 </body>
 </html>
